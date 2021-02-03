@@ -1,0 +1,296 @@
+.landing{
+    width: 100%;
+    height: 500px;
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.0)),url('./../images/landing.jpeg'); */
+    background: url('./../images/landing.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+
+.emnav{
+    background-color: #fff;
+}
+
+.landing-body{
+    height: 100%;
+}
+
+.landing-body h1{
+    font-size: 3em;
+    /* color: #0F77BE; */
+    color: #fff;
+}
+
+.landing-content{
+    background-color: rgba(0, 0, 0, 0.541);
+    padding: 3em;
+}
+
+
+
+.desc-container{
+    min-height: 500px;
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+
+.desc-content ul{
+    list-style-type: none;
+    padding: 0;
+    margin-top: 3em;
+}
+
+.desc-content ul li{
+    margin: 1.5em 0;
+    font-size: 1.2em;
+}
+
+.blue-content{
+    color: #0F77BE;
+}
+
+.white-content{
+    color: #fff;
+}
+
+
+.desc-banner img{
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.desc-content{
+    max-width: 400px;
+    margin-top: 2em;
+}
+
+.gallery-container{
+    background-color: #292929;
+    margin: 5em auto 2em auto;
+    border-radius: 5px;
+}
+
+.homes{
+    margin-top: 10em;
+    margin-bottom: 10em;
+}
+
+.box{
+    margin: 2em 0;
+    background-color: #292929;
+    color: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.box .text-box{
+    padding: 1em 2em;
+}
+
+.text-box h3{
+    margin-bottom: 1.5em;
+}
+
+.box .price{
+    border-top: 3px solid #fff;
+    padding-top: 0.5em;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1em 2em 0.5em 2em;
+}
+
+.price p{
+    font-size: 1.5em;
+    padding: 0;
+    margin: 0;
+}
+
+
+.revs{
+    background-color: #f4f4f4;
+}
+
+.review-body{
+    padding: 5em 0;
+}
+
+.review{
+    background-color: #292929;
+    color: #fff;
+    margin: 2em auto;
+}
+
+.contact{
+    /* background-color: #f3fafe; */
+    background: url('./../images/WhatsApp\ Image\ 2021-01-05\ at\ 20.45.13.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 5em 0;
+}
+
+.contact-inner{
+    background-color: rgba(0, 0, 0, 0.315);
+    padding: 3em;
+}
+
+
+.r2g{
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
+.c-form{
+    background-color: #292929;
+    color: #fff;
+    padding: 1em 1em;
+    border-radius: 5px;
+}
+
+.c-form div{
+    margin: 0.5em 0;
+}
+
+.c-form h3{
+    margin-bottom: 0.5em;
+    color: #fff;
+}
+
+
+.sbtn{
+    width: 140px;
+    color: #fff;
+}
+
+.btn-div{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.msg-textarea{
+    padding: 5px 10px;
+}
+
+.footer{
+    background-color: #292929;
+    padding: 3em;
+}
+
+.footer-list{
+    list-style-type: none;
+    margin: 5em 0;
+    padding-left: 0;
+}
+
+.footer-list li{
+    text-decoration: none;
+    margin: 2em 0;
+}
+
+.footer-list li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.socials{
+    margin: 5em 0 3em 0;
+    display: flex;
+}
+
+.socials img{
+    margin-right:2em;
+    width: 50px;
+}
+
+.call{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.call img{
+    width: 50px;
+}
+
+.call p{
+    font-size: 1.2em;
+}
+
+.review-text{
+    text-align: justify;
+}
+
+
+.btn-row{
+    margin: 3em;
+}
+
+.btn-row .sm-btn{
+    width: 200px;
+}
+
+.home-link{
+    text-decoration: none;
+    color: #fff;
+}
+
+.home-link:hover{
+    color: #FFC107;
+}
+
+.feature-row{
+    margin:0 0 8em 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 3em 5em;
+}
+
+
+.features h3{
+    /* text-align: center; */
+}
+
+.features ul{
+    list-style-type: none;
+    margin-bottom: 2em;
+    padding: 0;
+}
+
+.features ul li{
+    margin: 1em 0;
+}
+
+.phone{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.phone p{
+    margin: 0;
+    padding: 0;
+}
+
+.socials-link{
+    transition: 0.2s ease-in;
+}
+
+.socials-link:hover{
+    transform: scale(1.1);
+}
+
+.footer-list li a:hover{
+    color: #FFC107;
+    text-decoration: underline;
+}
+
+.hidden{
+    display: none;
+    visibility: hidden;
+}
