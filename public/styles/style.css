@@ -97,9 +97,9 @@
     background-repeat: no-repeat;  
 }
 
-/* #contentDiv2{
-    background-color: #f4f4f4;
-} */
+#contentDiv1{
+    background-color: #0F77BE;
+}
 
 .content-row{
     width: 100%;
@@ -323,4 +323,8 @@
 .hidden{
     display: none;
     visibility: hidden;
+}
+
+.desc-text{
+    text-align: justify;
 }
