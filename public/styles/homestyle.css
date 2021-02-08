@@ -1,3 +1,8 @@
+:root {
+    --site-main: #0F77bE;
+    /* --site-main: #292929; */
+}
+
 .landing{
     width: 100%;
     height: 500px;
@@ -67,7 +72,7 @@
 }
 
 .gallery-container{
-    background-color: #292929;
+    background-color: var(--site-main);
     margin: 5em auto 2em auto;
     border-radius: 5px;
 }
@@ -79,7 +84,7 @@
 
 .box{
     margin: 2em 0;
-    background-color: #292929;
+    background-color: var(--site-main);
     color: #fff;
     border-radius: 5px;
     display: flex;
@@ -119,7 +124,7 @@
 }
 
 .review{
-    background-color: #292929;
+    background-color: var(--site-main);
     color: #fff;
     margin: 2em auto;
 }
@@ -145,7 +150,7 @@
 }
 
 .c-form{
-    background-color: #292929;
+    background-color: var(--site-main);
     color: #fff;
     padding: 1em 1em;
     border-radius: 5px;
@@ -176,7 +181,7 @@
 }
 
 .footer{
-    background-color: #292929;
+    background-color: var(--site-main);
     padding: 3em;
 }
 

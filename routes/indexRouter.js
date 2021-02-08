@@ -1,6 +1,7 @@
 const Router = require("express").Router()
 const argon2 = require("argon2")
 const { body, header, validationResult } = require('express-validator');
+const nodemailer = require("nodemailer");
 
 const House = require('./../models/House')
 const Admin = require('./../models/Admin')
@@ -9,7 +10,7 @@ Router.get("/", async (req,res)=>{
     try {
         const houses = await House.find()
 
-        res.render("index", {houses:houses})
+        res.render("index", {houses:houses, message:null})
     } catch (error) {
         res.status(500).json({error:error.message})
     }
@@ -54,20 +55,21 @@ Router.post("/contact", [
 
         const message = {
             from: process.env.MAIL_ADDRESS, // sender address
-            to: `${process.env.MAIL_ADDRESS}`, // list of receivers
+            to: `emanhomes993@gmail.com`, // list of receivers
             subject: "New Message from emanhomes.com", // Subject line
             text: `Client: ${req.body.name}
 Client email: ${req.body.email}
-Phone Number: ${req.body.phone}
-Message: ${req.body.destination}
+Phone Number: ${req.body.phoneNumber}
+Message: ${req.body.message}
             `, // plain text body
         }
 
         let info = await transporter.sendMail(message);
-        res.status(200).redirect("/#Contact")
+        const houses = await House.find()
+        res.status(200).render("index", {houses:houses, message:"Message sent succesfully"})
 
     }catch(e){
-        res.status(400).json({message:e.message})
+        res.status(400).render("index", {houses:houses, message:e.message})
     }
 
 
