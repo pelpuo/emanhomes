@@ -27,3 +27,5 @@ import Component13 from '../components/upload-image.edit'
 AdminBro.UserComponents.Component13 = Component13
 import Component14 from '../components/upload-image.list'
 AdminBro.UserComponents.Component14 = Component14
+import Component15 from '../components/dashboard'
+AdminBro.UserComponents.Component15 = Component15

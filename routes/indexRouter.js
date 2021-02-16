@@ -1,5 +1,6 @@
 const Router = require("express").Router()
-const argon2 = require("argon2")
+// const argon2 = require("argon2")
+const bcrypt = require('bcrypt');
 const { body, header, validationResult } = require('express-validator');
 const nodemailer = require("nodemailer");
 
@@ -82,8 +83,9 @@ Message: ${req.body.message}
 //     try{
 //         const emailExists = await Admin.findOne({email:req.body.email})
 //         if(emailExists)return res.status(400).json({message:"Email already in use"})
-        
-//         const hash = await argon2.hash(req.body.password);
+//         const salt = await bcrypt.genSalt(10);
+
+//         const hash = await bcrypt.hash(req.body.password, salt);
 
 //         const admin = await Admin.create({
 //             email:req.body.email,

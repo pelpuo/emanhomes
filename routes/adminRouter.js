@@ -1,4 +1,5 @@
-const argon2 = require("argon2")
+// const argon2 = require("argon2")
+const bcrypt = require('bcrypt');
 const { buildAuthenticatedRouter } = require('@admin-bro/express');
 const Admin = require("./../models/Admin")
 const mongoose = require("mongoose")
@@ -13,7 +14,7 @@ const buildAdminRouter = (admin) => {
     authenticate: async (email, password) => {
       const admin = await Admin.findOne({ email });
 
-      if (admin && await argon2.verify(admin.encryptedPassword, password)) {
+      if (admin && await bcrypt.compare(password, admin.encryptedPassword)) {
         return admin.toJSON();
       }
       return null;
