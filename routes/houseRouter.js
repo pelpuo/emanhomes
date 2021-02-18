@@ -63,12 +63,12 @@ Router.post("/", verify,  [
             interiorFeatures: req.body.infeatures,
             exteriorFeatures: req.body.exfeatures,
             userId: req.user._id,
-            coverPhoto: req.files['cover-image'][0].path,
-            image1:req.files.image1[0].path,
-            image2:req.files.image2[0].path,
-            image3:req.files.image3[0].path,
-            image4:req.files.image4[0].path,
-            image5:req.files.image5[0].path
+            coverPhoto: "/" + req.files['cover-image'][0].path,
+            image1:"/" + req.files.image1[0].path,
+            image2:"/" + req.files.image2[0].path,
+            image3:"/" + req.files.image3[0].path,
+            image4:"/" + req.files.image4[0].path,
+            image5:"/" + req.files.image5[0].path
         })
 
         await house.save()
@@ -87,7 +87,14 @@ Router.put("/:id", verify,  [
     body("buildingStatus").exists(),
     body("interiorFeatures").exists(),
     body("exteriorFeatures").exists(),
-], async (req,res) =>{
+], upload.fields([
+    { name: 'cover-image', maxCount: 1 },
+    { name: 'image1', maxCount: 1 },
+    { name: 'image2', maxCount: 1 },
+    { name: 'image3', maxCount: 1 },
+    { name: 'image4', maxCount: 1 },
+    { name: 'image5', maxCount: 1 }
+  ]), async (req,res) =>{
     try {
         const house = await House.findById(req.params.id)
         if(house.userId != req.user._id){
@@ -95,17 +102,17 @@ Router.put("/:id", verify,  [
         }
 
         let coverPhoto = house.coverPhoto
-        if(req.body.coverPhoto)coverPhoto = req.body.coverPhoto
+        if(req.files["cover-image"])coverPhoto = "/" + req.files["cover-image"][0].path
         let image1 = house.image1
-        if(req.body.image1)image1 = req.body.image1
+        if(req.files.image1)image1 = "/" + req.files.image1[0].path
         let image2 = house.image2
-        if(req.body.image2)image2 = req.body.image2
+        if(req.files.image2)image2 = "/" + req.files.image2[0].path
         let image3 = house.image3
-        if(req.body.image3)image3 = req.body.image3
+        if(req.files.image3)image3 = "/" + req.files.image3[0].path
         let image4 = house.image4
-        if(req.body.image4)image4 = req.body.image4
+        if(req.files.image4)image4 = "/" + req.files.image4[0].path
         let image5 = house.image5
-        if(req.body.image5)image5 = req.body.image5
+        if(req.files.image5)image5 = "/" + req.files.image5[0].path
 
 
         const updatedHouse = await House.findByIdAndUpdate( req.params.id,{

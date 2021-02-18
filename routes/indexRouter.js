@@ -7,6 +7,7 @@ const {verify} = require("./../verification")
 
 const House = require('./../models/House')
 const Admin = require('./../models/Admin')
+const User = require('./../models/User')
 
 Router.get("/", async (req,res)=>{
     try {
@@ -22,12 +23,23 @@ Router.get("/", async (req,res)=>{
 Router.get("/home/:id", async (req,res) =>{
     try {
         const house = await House.findById(req.params.id)
+        const seller = await User.findById(house.userId)
+        
 
         let inter = house.interiorFeatures
         inter = inter.split(", ")
         let exter = house.exteriorFeatures
         exter = exter.split(", ")
-        let editedHouse = {...house._doc, interior: inter, exterior:exter}
+        let editedHouse = {
+            ...house._doc, 
+            interior: inter, 
+            exterior:exter, 
+            sName:`${seller.firstname} ${seller.lastname}`,
+            sCompany: seller.companyName,
+            sDescription: seller.description,
+            sEmail: seller.contactEmail,
+            sPhone: seller.mobileNumber
+        }
         delete editedHouse.interiorFeatures
         delete editedHouse.exteriorFeatures
     
