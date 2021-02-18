@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="public/images/icon.ico" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="public/styles/style.css"/>
+    <title>EmanHomes</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light emnav">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="public/images/WhatsApp Image 2021-01-06 at 19.18.01asdasdasasdas.png" alt="" width="40" height="40">EmanHomes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/#About">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/#Homes">Our Homes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/#Contact">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/addhouse">Add House</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/account">Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/user/logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <h2 class="text-center mt-5 mb-4">Account</h2>
+        <form id="registerform" class="mx-5 my-5 row">
+          <input type="hidden" name="_method" value="PUT">
+          <!-- <div class="mb-3">
+            <label for="formFile" class="form-label">Profile image</label>
+            <input class="form-control" type="file" name="file" id="file">
+          </div> -->
+            <div class="mb-3 col-md-6">
+              <label for="firstname" class="form-label">First Name</label>
+              <input type="text" required="true" value="<%= user.firstname %>" class="form-control" name="firstname" id="firstname" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="lastname" class="form-label">Last Name</label>
+              <input type="text" required="true" value="<%= user.lastname %>" class="form-control" name="lastname" id="lastname">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" required="true" value="<%= user.email %>" class="form-control" name="email" id="email">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="text" required="true" value="<%= user.phone_number %>" class="form-control" name="phone" id="phone">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" required="true" class="form-control" name="password" id="password">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="cpassword" class="form-label">Confirm Password</label>
+              <input type="password" required="true" class="form-control" name="cpassword" id="cpassword">
+            </div>
+            <div class="col-md-12 mt-5">
+                <h2 class="text-center">Sales information</h2>
+            </div>
+            <div class="mb-3 col-md-12">
+                <label for="lastname" class="form-label">Company Name</label>
+                <input type="text" required="true" value="<%= user.companyName %>" class="form-control" name="company" id="company">
+            </div>
+            <div class="mb-3 col-md-12">
+                <label for="lastname" class="form-label">Description</label>
+                <input type="text" required="true" value="<%= user.description %>" class="form-control" name="description" id="description">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="lastname" class="form-label">Mobile Number</label>
+                <input type="text" required="true" value="<%= user.mobileNumber %>" class="form-control" name="mobileNumber" id="mobileNumber">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label for="lastname" class="form-label">Email</label>
+                <input type="text" required="true" value="<%= user.contactEmail %>" class="form-control" name="contactEmail" id="contactEmail">
+            </div>
+            <div class="d-flex justify-content-end my-2">
+                <button type="submit" class="btn btn-primary sbtn">Save Changes</button>
+            </div>
+          </form>   
+          <hr>
+          <div class="my-5">
+            <h2 class="text-center">Added Homes</h2>
+            <div class="row">
+
+            <% for(let home of houses){ %>
+              <div class="col-md-4 box hidden" href="home.html">
+                <div class="box-inner">
+                  <div class="actions">
+                    <a id="edit-<%= home._id %>" href="/house/edit/<%= home._id  %>" class="btn btn-warning edit">Edit</a>
+                    <button id="<%= home._id %>" class="btn btn-danger delete">Delete</button>
+                  </div>
+                  <a href="/home/<%= home._id %>"><img style="height: 267px;" src="<%= home.coverPhoto %>" class="card-img-top" alt="..."></a>
+                  <div class="text-box">
+                    <a href="/home/<%= home._id %>" class="home-link"><h3 class=""><%= home.description %></h3></a>
+                    <p>Street / Landmark: <%= home.location %></p>
+                    <p>Size: <%= home.size %> sqft</p>
+                    <small>Building Status  <%= home.buildingStatus %>% Complete</small>
+                    <div class="price">
+                      <p>Price: $<%= home.price %> </p>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <% } %>
+            </div>
+            <div class="row btn-row d-flex justify-content-md-center">
+                <button class="btn btn-warning sm-btn white-content" id="seeMore">See more</button>
+            </div>
+          </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer mt-5">
+        <div class="container">
+            <div class="row"><h3 class="white-content">EmanHomes</h3></div>
+            <div class="row d-flex justify-content-md-between">
+                <div class="col-md-4">
+                    <ul class="footer-list">
+                        <li><a href="#Home">Home</a></li>
+                        <li><a href="#About">About</a></li>
+                        <li><a href="#Homes">Our Homes</a></li>
+                        <li><a href="#Contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="socials">
+                        <a class="socials-link" href="https://www.facebook.com/eman.homes.737" target="blank"><img src="public/images/bx_bxl-facebook.png" alt="facebook"></a>
+                        <a class="socials-link" href="https://www.linkedin.com/in/eman-homes-8446b6202" target="blank"><img src="public/images/cib_linkedin-in.png" alt="twitter"></a>
+                        <a class="socials-link" href="https://www.instagram.com/p/CKmku06JkwG/?utm_source=ig_web_button_share_sheet" target="blank"><img src="public/images/ant-design_instagram-outlined.png" alt="instagram"></a>
+                    </div>
+                    <div class="call">
+                            <img src="public/images/fluent_call-24-regular.png" alt="call">
+                            <div class="phone">
+                                <p class="white-content">+233 20 584 3775</p>
+                                <p class="white-content">+233 56 448 0444</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" 
+    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" 
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" 
+    crossorigin="anonymous"></script>
+
+    <script>
+        var visibleNumber = 0
+        const houses = document.querySelectorAll(".box")
+        const seeMore = document.querySelector("#seeMore")
+  
+        const showMore = () =>{
+          let count = 0
+          if(visibleNumber <= houses.length){
+            visibleNumber+=3
+            houses.forEach(house =>{
+              if(count < visibleNumber)house.classList.remove("hidden")
+              count++
+            })
+  
+          }else{
+            seeMore.classList.add("hidden")
+          }
+          
+        } 
+        showMore();
+        seeMore.addEventListener("click", () => showMore())
+
+
+        const form = document.querySelector("#registerform")
+
+        form.addEventListener("submit", (e)=>{
+          e.preventDefault()
+          const data = {
+            firstname: form.elements["firstname"].value,
+            email: form.elements["email"].value,
+            lastname: form.elements["lastname"].value,
+            phone: form.elements["phone"].value,
+            password: form.elements["password"].value,
+            description: form.elements["description"].value,
+            contactEmail: form.elements["contactEmail"].value,
+            mobileNumber: form.elements["mobileNumber"].value,
+            company: form.elements["company"].value,
+            file: form.elements["file"].value
+          }
+
+          fetch('/user', {
+            method: 'PUT',
+            headers:{
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then(response => response.json())
+          .then(response => {
+            if(response.message == "success"){
+              location.reload()
+              alert("Account updated successfully")
+            }
+          })
+
+
+        })
+
+        const delbtns = document.querySelectorAll(".delete")
+        delbtns.forEach(btn => btn.addEventListener("click", (e)=>{
+          const id = e.target.id
+          fetch(`/house/${id}`, {
+            method: 'DELETE',
+            headers:{
+              'Content-type': 'application/json'
+            }
+          }).then(response => response.json())
+          .then(response => {
+            if(response.message == "success"){
+              location.reload()
+              alert("House deleted successfully")
+            }
+          })
+          
+
+        }))
+
+
+    </script>
+</body>
+</html>

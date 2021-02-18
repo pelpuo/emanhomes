@@ -25,26 +25,8 @@ const options = {
         image5: {
           isVisible: false,
         },
-        uploadCover: {
-        components: {
-            edit: AdminBro.bundle('./components/upload-image.edit.tsx'),
-            list: AdminBro.bundle('./components/upload-image.list.tsx'),
-        },
-        },
 
-        uploadImage1: {
-          components: {
-              edit: AdminBro.bundle('./components/upload-image.edit.tsx'),
-              list: AdminBro.bundle('./components/upload-image.list.tsx'),
-          },
-        },
-        uploadImage2: {
-          components: {
-              edit: AdminBro.bundle('./components/upload-image.edit.tsx'),
-              list: AdminBro.bundle('./components/upload-image.list.tsx'),
-          },
-        },
-        uploadImage3: {
+        uploadImage5: {
           components: {
               edit: AdminBro.bundle('./components/upload-image.edit.tsx'),
               list: AdminBro.bundle('./components/upload-image.list.tsx'),
@@ -56,12 +38,30 @@ const options = {
               list: AdminBro.bundle('./components/upload-image.list.tsx'),
           },
         },
-        uploadImage5: {
+        uploadImage3: {
           components: {
               edit: AdminBro.bundle('./components/upload-image.edit.tsx'),
               list: AdminBro.bundle('./components/upload-image.list.tsx'),
           },
         },
+        uploadImage2: {
+          components: {
+              edit: AdminBro.bundle('./components/upload-image.edit.tsx'),
+              list: AdminBro.bundle('./components/upload-image.list.tsx'),
+          },
+        },
+        uploadImage1: {
+          components: {
+              edit: AdminBro.bundle('./components/upload-image.edit.tsx'),
+              list: AdminBro.bundle('./components/upload-image.list.tsx'),
+          },
+        },
+        uploadCover: {
+          components: {
+              edit: AdminBro.bundle('./components/upload-image.edit.tsx'),
+              list: AdminBro.bundle('./components/upload-image.list.tsx'),
+          },
+          },
     },
     actions: {
         new: {

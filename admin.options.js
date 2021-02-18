@@ -5,9 +5,10 @@ AdminBro.registerAdapter(AdminBroMongoose);
 
 const UserAdmin = require("./user.admin")
 const House = require("./house.house")
+const User = require("./user.user")
 
 const options = {
-  resources: [UserAdmin, House],
+  resources: [UserAdmin, User, House],
   dashboard: {
     handler: async () => {
       return { some: 'output' }

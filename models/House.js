@@ -45,6 +45,9 @@ const HouseSchema = new Schema({
     },
     exteriorFeatures:{
         type:String
+    },
+    userId:{
+        type:String
     }
 })
 

@@ -3,6 +3,7 @@ const Router = require("express").Router()
 const bcrypt = require('bcrypt');
 const { body, header, validationResult } = require('express-validator');
 const nodemailer = require("nodemailer");
+const {verify} = require("./../verification")
 
 const House = require('./../models/House')
 const Admin = require('./../models/Admin')
@@ -11,25 +12,29 @@ Router.get("/", async (req,res)=>{
     try {
         const houses = await House.find()
 
-        res.render("index", {houses:houses, message:null})
+        res.render("index", {houses:houses, message:null, user:res.locals.user})
     } catch (error) {
         res.status(500).json({error:error.message})
     }
 
 })
 
-Router.get("/:id", async (req,res) =>{
-    const house = await House.findById(req.params.id)
+Router.get("/home/:id", async (req,res) =>{
+    try {
+        const house = await House.findById(req.params.id)
 
-    let inter = house.interiorFeatures
-    inter = inter.split(", ")
-    let exter = house.exteriorFeatures
-    exter = exter.split(", ")
-    let editedHouse = {...house._doc, interior: inter, exterior:exter}
-    delete editedHouse.interiorFeatures
-    delete editedHouse.exteriorFeatures
-
-    res.render("home", {house:editedHouse})
+        let inter = house.interiorFeatures
+        inter = inter.split(", ")
+        let exter = house.exteriorFeatures
+        exter = exter.split(", ")
+        let editedHouse = {...house._doc, interior: inter, exterior:exter}
+        delete editedHouse.interiorFeatures
+        delete editedHouse.exteriorFeatures
+    
+        res.render("home", {house:editedHouse})
+    } catch (error) {
+        res.status(400).json({message:error.message})
+    }
 })
 
 Router.post("/contact", [
@@ -76,6 +81,33 @@ Message: ${req.body.message}
 
 
 
+})
+
+// Router.get("/addhouse", verify, (req,res) =>{
+//     res.status(200).render("addproduct")
+// })
+
+Router.get("/addhouse",verify, (req,res) =>{
+    res.status(200).render("addproduct", {user:res.locals.user, house:null})
+})
+
+
+// Router.get("/account", verify, (req,res) =>{
+//     try{
+//         res.status(200).render("account", {user:res.locals.user})
+//     }catch(e){
+
+//     }
+// })
+
+Router.get("/account",verify, async (req,res) =>{
+    try{
+        const houses = await House.find({userId: res.locals.user._id})
+
+        res.status(200).render("account", {user:res.locals.user, houses})
+    }catch(e){
+        res.status(400).json(e)
+    }
 })
 
 // Router.post("/admin", async(req,res)=>{

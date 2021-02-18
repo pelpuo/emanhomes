@@ -34,6 +34,24 @@
               <li class="nav-item">
                 <a class="nav-link" href="#Contact">Contact</a>
               </li>
+              <% if(!user){ %>
+                <li class="nav-item">
+                  <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#exampleModalreg">Register</a>
+                </li>
+              <% }else{ %>
+              <li class="nav-item">
+                <a class="nav-link" href="/addhouse">Add House</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/account">Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/user/logout">Logout</a>
+              </li>
+              <% } %>
             </ul>
           </div>
         </div>
@@ -48,7 +66,7 @@
                   Looking to buy a new home? EmanHomes has you covered with a wide range of luxury apartments with stunning designs.
                 </p>
                 <a class="btn btn-primary" href="#Homes">
-                    Find your Home
+                    Browse Homes
                 </a>
             </div>
         </div>
@@ -65,7 +83,7 @@
 
         <div class="col-md-6 d-flex justify-content-center">
             <div class="desc-content">
-                <h2 class="blue-content">We sell Quality Homes 
+                <h2 class="blue-content">Find Quality Homes 
                     at Affordable prices</h2>
                 <!-- <ul>
                     <li>Lorem ipsul dolor sit amet</li>
@@ -81,7 +99,7 @@
     </div>
 
     <!-- Gallery -->
-    <div class="gray-container">
+    <!-- <div class="gray-container">
       <div class="row content-row">
         <div class="col-md-6 content" id="contentDiv1">
           <h2 class="white-content">Who We Are</h2>
@@ -98,7 +116,7 @@
         </div>
       </div>
     </div>
-    
+     -->
 
     <!-- Homes -->
     <div id="Homes" class="container homes">
@@ -106,11 +124,11 @@
       <div class="row" id="housesDiv" data-houses="<%= houses %>" >
 
             <% for(let home of houses){ %>
-            <div class="col-md-4 box hidden" href="home.html">
+            <div class="col-md-3 box hidden" href="home.html">
               <div class="box-inner">
-                <a href="/<%= home._id %>"><img src="<%= home.coverPhoto %>" class="card-img-top" alt="..."></a>
+                <a href="/home/<%= home._id %>"><img  src="<%= home.coverPhoto %>" class="card-img-top" alt="..."></a>
                 <div class="text-box">
-                  <a href="/<%= home._id %>" class="home-link"><h3 class=""><%= home.description %></h3></a>
+                  <a href="/home/<%= home._id %>" class="home-link"><h5 class=""><%= home.description %></h5></a>
                   <p>Street / Landmark: <%= home.location %></p>
                   <p>Size: <%= home.size %> sqft</p>
                   <small>Building Status  <%= home.buildingStatus %>% Complete</small>
@@ -180,7 +198,7 @@
                 <div class="col-md-5 offset-md-1">
                   <% if(message){ %>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                      Message sent successfully.
+                      <%= message %>
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <% } %>
@@ -238,6 +256,84 @@
       </div>
     </div>
 
+        <!-- Modal starts -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <form id="loginform" action="/user/login" method="POST" class="mx-5 mt-4">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+          </div>
+        </form>
+         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="loginbtn">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalreg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mx-2 my-2" style="color: red;" id="register-error"></p>
+          <form id="registerform" action="/user/register" method="POST" class="mx-5 mt-4">
+            <div class="mb-3">
+              <label for="firstname" class="form-label">First Name</label>
+              <input type="text" required="true" class="form-control" name="firstname" id="firstname" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="lastname" class="form-label">Last Name</label>
+              <input type="text" required="true" class="form-control" name="lastname" id="lastname">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" required="true" class="form-control" name="email" id="email">
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="text" required="true" class="form-control" name="phone" id="phone">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" required="true" class="form-control" name="password" id="password">
+            </div>
+            <div class="mb-3">
+              <label for="cpassword" class="form-label">Confirm Password</label>
+              <input type="password" required="true" class="form-control" name="cpassword" id="cpassword">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="registerbtn">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal ends -->
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" 
     crossorigin="anonymous"></script>
@@ -251,8 +347,8 @@
 
       const showMore = () =>{
         let count = 0
-        visibleNumber+=3
         if(visibleNumber <= houses.length){
+          visibleNumber+=4
           houses.forEach(house =>{
             if(count < visibleNumber)house.classList.remove("hidden")
             count++
@@ -265,6 +361,26 @@
       } 
       showMore();
       seeMore.addEventListener("click", () => showMore())
+
+
+      const loginbtn = document.querySelector("#loginbtn")
+      const registerbtn = document.querySelector("#registerbtn")
+
+      loginbtn.addEventListener("click", ()=>{
+        document.getElementById("loginform").submit()
+      })
+
+      registerbtn.addEventListener("click", ()=>{
+        let password = document.getElementById("password").value
+        let cpassword = document.getElementById("cpassword").value
+
+        if(password == cpassword){
+          document.getElementById("registerform").submit()
+        }else{
+          document.getElementById("register-error").innerHTML = "Passwords do not match"
+        }
+      
+      })
 
     </script>
 </body>

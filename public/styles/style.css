@@ -144,11 +144,12 @@
     color: #fff;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    position: relative;
 }
 
 .box-inner .text-box{
     padding: 1em;
-    height: 20em;
+    height: 18em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -163,7 +164,7 @@
 }
 
 .price p{
-    font-size: 1.5em;
+    font-size: 1em;
     padding: 0;
     margin: 0;
 }
@@ -352,4 +353,12 @@
     color: var(--site-main);
     margin: 0;
     font-weight: bold;
+}
+
+
+/* Account Page Styles */
+.box-inner .actions{
+    position: absolute;
+    right: 0;
+    padding: 0.5em;
 }
