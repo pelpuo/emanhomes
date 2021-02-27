@@ -64,7 +64,7 @@ Router.post("/register", upload.single('image'), [
         }) 
 
         const savedUser = await user.save()
-        res.status(201).redirect("/account")
+        res.status(201).redirect("/?propmt=Account_created_successfully._Continue_to_account_to_fill_in_remaining_details")
 
 
     }catch(e){
@@ -79,7 +79,7 @@ Router.post("/login", passport.authenticate('local'), async (req, res) => {
 Router.get("/logout", async (req, res) => {
     req.logout();
     try{
-        res.status(200).redirect("/")
+        res.status(200).redirect("/?prompt=Logged_out")
     }catch(e){
         res.status(200).render("/")
     }

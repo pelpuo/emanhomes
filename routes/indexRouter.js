@@ -12,8 +12,10 @@ const User = require('./../models/User')
 Router.get("/", async (req,res)=>{
     try {
         const houses = await House.find()
+        let prompt = null
+        if(req.query.prompt) prompt = req.query.prompt.split("_").join(" ") 
 
-        res.render("index", {houses:houses, message:null, user:res.locals.user})
+        res.render("index", {houses:houses, message: null, prompt:prompt, user:res.locals.user})
     } catch (error) {
         res.status(500).json({error:error.message})
     }
@@ -43,9 +45,10 @@ Router.get("/home/:id", async (req,res) =>{
         delete editedHouse.interiorFeatures
         delete editedHouse.exteriorFeatures
     
-        res.render("home", {house:editedHouse})
+        res.render("home", {house:editedHouse, message:null})
     } catch (error) {
-        res.status(400).json({message:error.message})
+        // res.status(400).json({message:error.message})
+        next()
     }
 })
 

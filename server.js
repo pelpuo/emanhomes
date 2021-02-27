@@ -29,8 +29,20 @@ app.use(express.urlencoded({extended:true}))
 
 
 // Connecting Mongoose
-mongoose.connect(process.env.MONGO_DB, {useNewUrlParser:true, useUnifiedTopology:true})
-.then(() => console.log(`Database connected`))
+const connect = async() => {
+    try{
+        await mongoose.connect(process.env.MONGO_DB, {
+            useNewUrlParser:true, 
+            useUnifiedTopology:true, 
+            useFindAndModify: false, 
+            useCreateIndex: true})
+        .then(() => console.log(`Database connected`))
+    }catch(e){
+        console.log(e)
+    }
+}
+
+connect()
 
 const db = mongoose.connection
 db.on("error", (e)=>console.error(e))
