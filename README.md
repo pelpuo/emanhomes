@@ -1,5 +1,5 @@
 # EmanHomes Website
-Web app and ecommerce website for emanhomes real estate. <br>
+Landing page and ecommerce website for emanhomes real estate. <br>
 This app was made with:
 * NodeJS for backend
 * HTML, CSS, Javascript and Bootstrap for frontend 
