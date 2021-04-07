@@ -14,5 +14,9 @@ This app was made with NodeJS for backend, HTML/CSS/JS for frontend and AdminBro
 ## Setting Up
 * Make sure NodeJS is installed on your development computer
 * Clone the project to your development computer
+* Create .env file in root folder
+* Add mongodb uri to .env as MONGO_DB
+* Add email to .env as MAIL_ADDRESS
+* Add password for email to env as MAIL_PASSWORD
 * Run `npm install`
 * Run `npm start`
