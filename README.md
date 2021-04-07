@@ -1,6 +1,9 @@
 # EmanHomes Website
 Web app and ecommerce website for emanhomes real estate. <br>
-This app was made with NodeJS for backend, HTML/CSS/JS for frontend and AdminBro as its admin panel.
+This app was made with:
+* NodeJS for backend
+* HTML, CSS, Javascript and Bootstrap for frontend 
+* AdminBro as its admin panel.
 
 ## Hosted app
 [http://emanhomesgh.herokuapp.com/]
